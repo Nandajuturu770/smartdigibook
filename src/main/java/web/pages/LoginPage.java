@@ -9,10 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public LoginPage(WebDriver driver){
+    public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
-    
+
     /*element of the login page */
     @FindBy(xpath = "//img[@class = 'logo']")
     private WebElement smartDigiBookImg;
@@ -38,7 +38,7 @@ public class LoginPage {
     private WebElement forgotPasswordLnk;
 
     @FindBy(xpath = "//input[@type='password']")
-    private List <WebElement> passwordTxtfd ;
+    private List<WebElement> passwordTxtfd;
 
     @FindBy(xpath = "//button[contains(@class , 'sdbLoginBtn-mobile')]")
     private WebElement loginBtn;
@@ -127,7 +127,20 @@ public class LoginPage {
     public WebElement getStudyPertImg() {
         return studyPertImg;
     }
-
-
+    /*verification methods*/
+    public void verifyLoginScree(){
+        System.out.println("verification of login screen is started");
+        for (int i = 0; i < 20; i++) {
+            try {
+                getLoginInToYourAccountTxt().isDisplayed();
+                break;
+            } catch (Exception exception){}
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {}
+        }
+        getSmartDigiBookImg().isDisplayed();
+        getLoginInToYourAccountTxt().isDisplayed();
+    }
 
 }
