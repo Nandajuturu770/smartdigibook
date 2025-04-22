@@ -1,1 +1,3 @@
+web\generic\BaseTest.class
+web\generic\WebElementActions.class
 web\pages\LoginPage.class

@@ -2,145 +2,604 @@ package web.pages;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v130.pwa.PWA.GetOsAppStateResponse;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
 
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
+import web.generic.WebElementActions;
 
-    /*element of the login page */
-    @FindBy(xpath = "//img[@class = 'logo']")
-    private WebElement smartDigiBookImg;
+public class LoginPage extends WebElementActions {
 
-    @FindBy(xpath = "//p[@class = 'login-message']")
-    private WebElement loginInToYourAccountTxt;
+	final static Logger logger = LogManager.getLogger(LoginPage.class);
+	WebDriver driver;
+	public LoginPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
 
-    @FindBy(xpath = "//*[@alt='indian-flag']")
-    private WebElement indiaFlagImg;
+	//* element of the login page 
+	@FindBy(xpath = "//img[@class = 'logo']")
+	private WebElement smartDigiBookImg;
 
-    @FindBy(xpath = "//img[@alt='indian-flag']/following-sibling::p")
-    private WebElement indiaCoutryCodeTxt;
+	@FindBy(xpath = "//p[@class = 'login-message']")
+	private WebElement loginInToYourAccountTxt;
 
-    @FindBy(id = "contactNumber")
-    private WebElement mobileNumberTxtfd;
+	@FindBy(xpath = "//*[@alt='indian-flag']")
+	private WebElement indiaFlagImg;
 
-    @FindBy(xpath = "//*[contains(text() ,'Login PIN')]")
-    @SuppressWarnings("unused")
-    private WebElement loginPinTxt;
+	@FindBy(xpath = "//img[@alt='indian-flag']/following-sibling::p")
+	private WebElement indiaCountryCodeTxt;
 
-    @FindBy(xpath = "//a[@href='/forgot-password']")
-    @SuppressWarnings("unused")
-    private WebElement forgotPasswordLnk;
+	@FindBy(id = "contactNumber")
+	private WebElement mobileNumberTxtfd;
 
-    @FindBy(xpath = "//input[@type='password']")
-    private List<WebElement> passwordTxtfd;
+	@FindBy(xpath = "//*[contains(text() ,'Login PIN')]")
+	private WebElement loginPinTxt;
 
-    @FindBy(xpath = "//button[contains(@class , 'sdbLoginBtn-mobile')]")
-    private WebElement loginBtn;
+	@FindBy(xpath = "//a[@href='/forgot-password']")
 
-    @FindBy(xpath = "//*[contains(text(),'a new user')]")
-    private WebElement areYouNewUserTxt;
+	private WebElement forgotPasswordLnk;
 
-    @FindBy(xpath = "//button[contains(@class , 'undefined')]")
-    private WebElement createNewAccountBtn;
+	@FindBy(xpath = "//input[@type='password']")
+	private List<WebElement> passwordTxtfd;
 
-    @FindBy(xpath = "//*[@class = 'newUserText']")
-    private WebElement howToCreateAccountTxt;
+	@FindBy(xpath = "//button[contains(@class , 'sdbLoginBtn')]")
+	private WebElement loginBtn;
 
-    @FindBy(xpath = "//*[@class = 'newUserText']/following-sibling::div/img")
-    private WebElement howToCreateAccountImg;
+	@FindBy(xpath = "//*[contains(text(),'a new user')]")
+	private WebElement areYouNewUserTxt;
 
-    @FindBy(xpath = "//a[@class='howToUseText']")
-    private WebElement howToUseLnk;
+	@FindBy(xpath = "//button[contains(@class , 'undefined')]")
+	private WebElement createNewAccountBtn;
 
-    @FindBy(xpath = "//a[@class='howToUseText']/following-sibling::div/img")
-    private WebElement howToUseImg;
+	@FindBy(xpath = "//*[@class = 'newUserText']")
+	private WebElement howToCreateAccountTxt;
 
-    @FindBy(xpath = "//*[@class='bg h-full']/img")
-    private WebElement studyPertImg;
+	@FindBy(xpath = "//*[@class = 'newUserText']/following-sibling::div/img")
+	private WebElement howToCreateAccountImg;
 
-    public WebElement getSmartDigiBookImg() {
-        return smartDigiBookImg;
-    }
+	@FindBy(xpath = "//a[@class='howToUseText']")
+	private WebElement howToUseLnk;
 
-    public WebElement getLoginInToYourAccountTxt() {
-        return loginInToYourAccountTxt;
-    }
+	@FindBy(xpath = "//a[@class='howToUseText']/following-sibling::div/img")
+	private WebElement howToUseImg;
 
-    public WebElement getIndiaFlagImg() {
-        return indiaFlagImg;
-    }
+	@FindBy(xpath = "//*[@class='bg h-full']/img")
+	private WebElement studyPerkImg;
 
-    public WebElement getIndiaCoutryCodeTxt() {
-        return indiaCoutryCodeTxt;
-    }
+	@FindBy(xpath = "//*[@class='myLibrary-title']")
+	private WebElement myLibraryTxt;
 
-    public WebElement getMobileNumberTxtfd() {
-        return mobileNumberTxtfd;
-    }
+	//* element of create account page
+	@FindBy(className = "registration-logo")
+	private WebElement registrationLogo;
 
-    public WebElement getLoginPinTxt() {
-        return loginPinTxt;
-    }
+	@FindBy(className = "create-account")
+	private WebElement createYourAccountTitleTxt;
 
-    public WebElement getForgotPasswordLnk() {
-        return forgotPasswordLnk;
-    }
+	@FindBy(className = "create-account-message")
+	private WebElement whenWeLearnTxt;
 
-    public List<WebElement> getPasswordTxtfd() {
-        return passwordTxtfd;
-    }
+	@FindBy(id = "firstName")
+	private WebElement firstNameTxtfd;
 
-    public WebElement getLoginBtn() {
-        return loginBtn;
-    }
+	@FindBy(id = "lastName")
+	private WebElement lastNameTxtfd;
 
-    public WebElement getAreYouNewUserTxt() {
-        return areYouNewUserTxt;
-    }
+	@FindBy(id = "securityPin")
+	private WebElement pinTxtFd;
 
-    public WebElement getCreateNewAccountBtn() {
-        return createNewAccountBtn;
-    }
+	@FindBy(className = "useDigitsNumbersText")
+	private WebElement useDigitsNumberTxt;
 
-    public WebElement getHowToCreateAccountTxt() {
-        return howToCreateAccountTxt;
-    }
+	@FindBy(id = "email")
+	private WebElement emailTxtFd;
 
-    public WebElement getHowToCreateAccountImg() {
-        return howToCreateAccountImg;
-    }
+	@FindBy(id = "contactNumber")
+	private WebElement contactNumbetTxt;
 
-    public WebElement getHowToUseLnk() {
-        return howToUseLnk;
-    }
+	@FindBy(xpath = "//*[contains(@class,'absolute right')]/button")
+	private WebElement getOptBtn;
 
-    public WebElement getHowToUseImg() {
-        return howToUseImg;
-    }
+	@FindBy(id = "state")
+	private WebElement stateDropdown;
 
-    public WebElement getStudyPertImg() {
-        return studyPertImg;
-    }
-    /*verification methods*/
-    public void verifyLoginScree(){
-        System.out.println("verification of login screen is started");
-        for (int i = 0; i < 20; i++) {
-            try {
-                getLoginInToYourAccountTxt().isDisplayed();
-                break;
-            } catch (Exception exception){}
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {}
-        }
-        getSmartDigiBookImg().isDisplayed();
-        getLoginInToYourAccountTxt().isDisplayed();
-    }
+	@FindBy(xpath = "//*[@role='option']")
+	private List<WebElement> stateOrCityDropdownOpt;
+
+	@FindBy(id = "city")
+	private WebElement cityDropDown;
+
+	@FindBy(id = "agreement")
+	private WebElement agreementCkbx;
+
+	@FindBy(xpath = "//*[contains(text(),'agree')]")
+	private WebElement iAgreeWithTxt;
+
+	@FindBy(className = "anchorTagPrivacy")
+	private WebElement privacyPoliceLnk;
+
+	@FindBy(xpath = "//*[@class='registration-loginButton']/button")
+	private WebElement continueBtn;
+
+	@FindBy(className = "havingTroubleText")
+	private WebElement havingTroubleTxt;
+
+	@FindBy(xpath = "//*[@class = 'animation-icon']/img")
+	private WebElement havingTroubleImg;
+
+	@FindBy(xpath = "//*[contains(text(),'Already')]")
+	private WebElement alreadyYouHaveAccountTxt;
+
+	@FindBy(className = "how-to-use-link")
+	private WebElement loginLnk;
+
+	@FindBy(xpath = "//*[@class='registration-right-div ']/img")
+	private WebElement rightNavneetPerkImg;
+
+	//* element of forget password page
+	@FindBy(xpath = "//a[@href='/login']/img")
+	private WebElement passwordSmartStoreLogo;
+
+	@FindBy(className = "forgot-security-pin")
+	private WebElement resetLoginPinTxt;
+
+	@FindBy(className = "forgot-security-pin-message")
+	private WebElement pleaseEnterTxt;
+
+	@FindBy(id = "contactNumber")
+	private WebElement contactNumberTxtfd;
+
+	@FindBy(id = "//*[@class='forgot-password-loginButton']/button")
+	private WebElement sendVerificationBtn;
+
+	@FindBy(xpath = "//a[@href='/login']/img")
+	private WebElement createPasswordLogo;
+
+	@FindBy(className = "create-security-pin")
+	private WebElement createSecutityPinTitleTxt;
+
+	@FindBy(id = "verificationCode")
+	private WebElement verificationTxtfd;
+
+	@FindBy(id = "password")
+	private WebElement passwordTxt;
+
+	@FindBy(id = "confirmPassword")
+	private WebElement confirmPasswordTxfd;
+
+	@FindBy(id = "//*[@class='forgot-password-loginButton']/button")
+	private WebElement changeLoginPinBtn;
+
+	//* element of how to use page
+	@FindBy(id = "language")
+	private WebElement languageChangDropdown;
+
+	@FindBy(xpath = "//*[@role='option']")
+	private List<WebElement> languageDropdownOpts;
+
+	@FindBy(className = "htu-header-button")
+	private WebElement languageHeaderTxt;
+
+	@FindBy(className = "htu-title")
+	private WebElement titleTxt;
+
+	@FindBy(className= "howtoUseListItems")
+	private List<WebElement> howtoUseListTxt;
+
+	@FindBy(className = "send-email-text")
+	private WebElement sendEmainTxt;
+
+	@FindBy(xpath = "//a[@href='mailto:support@smartdigibook.com']")
+	private WebElement emailLnk;
+
+	public WebElement getSmartDigiBookImg() {
+		return smartDigiBookImg;
+	}
+
+	public WebElement getLoginInToYourAccountTxt() {
+		return loginInToYourAccountTxt;
+	}
+
+	public WebElement getIndiaFlagImg() {
+		return indiaFlagImg;
+	}
+
+	public WebElement getIndiaCountryCodeTxt() {
+		return indiaCountryCodeTxt;
+	}
+
+	public WebElement getMobileNumberTxtfd() {
+		return mobileNumberTxtfd;
+	}
+
+	public WebElement getLoginPinTxt() {
+		return loginPinTxt;
+	}
+
+	public WebElement getForgotPasswordLnk() {
+		return forgotPasswordLnk;
+	}
+
+	public List<WebElement> getPasswordTxtfd() {
+		return passwordTxtfd;
+	}
+
+	public WebElement getLoginBtn() {
+		return loginBtn;
+	}
+
+	public WebElement getAreYouNewUserTxt() {
+		return areYouNewUserTxt;
+	}
+
+	public WebElement getCreateNewAccountBtn() {
+		return createNewAccountBtn;
+	}
+
+	public WebElement getHowToCreateAccountTxt() {
+		return howToCreateAccountTxt;
+	}
+
+	public WebElement getHowToCreateAccountImg() {
+		return howToCreateAccountImg;
+	}
+
+	public WebElement getHowToUseLnk() {
+		return howToUseLnk;
+	}
+
+	public WebElement getHowToUseImg() {
+		return howToUseImg;
+	}
+
+	public WebElement getStudyPerkImg() {
+		return studyPerkImg;
+	}
+
+	public static Logger getLogger() {
+		return logger;
+	}
+
+	public WebElement getMyLibraryTxt() {
+		return myLibraryTxt;
+	}
+
+	// getter methods for create account
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	public WebElement getRegistrationLogo() {
+		return registrationLogo;
+	}
+
+	public WebElement getCreateYourAccountTitleTxt() {
+		return createYourAccountTitleTxt;
+	}
+
+	public WebElement getWhenWeLearnTxt() {
+		return whenWeLearnTxt;
+	}
+
+	public WebElement getFirstNameTxtfd() {
+		return firstNameTxtfd;
+	}
+
+	public WebElement getLastNameTxtfd() {
+		return lastNameTxtfd;
+	}
+
+	public WebElement getPinTxtFd() {
+		return pinTxtFd;
+	}
+
+	public WebElement getUseDigitsNumberTxt() {
+		return useDigitsNumberTxt;
+	}
+
+	public WebElement getEmailTxtFd() {
+		return emailTxtFd;
+	}
+
+	public WebElement getContactNumbetTxt() {
+		return contactNumbetTxt;
+	}
+
+	public WebElement getGetOptBtn() {
+		return getOptBtn;
+	}
+
+	public WebElement getStateDropdown() {
+		return stateDropdown;
+	}
+
+	public List<WebElement> getStateDropdownOpt() {
+		return stateOrCityDropdownOpt;
+	}
+
+	public WebElement getCityDropDown() {
+		return cityDropDown;
+	}
+
+	public WebElement getAgreementCkbx() {
+		return agreementCkbx;
+	}
+
+	public WebElement getiAgreeWithTxt() {
+		return iAgreeWithTxt;
+	}
+
+	public WebElement getPrivacyPoliceLnk() {
+		return privacyPoliceLnk;
+	}
+
+	public WebElement getContinueBtn() {
+		return continueBtn;
+	}
+
+	public WebElement getHavingTroubleTxt() {
+		return havingTroubleTxt;
+	}
+
+	public WebElement getHavingTroubleImg() {
+		return havingTroubleImg;
+	}
+
+	public WebElement getAlreadyYouHaveAccountTxt() {
+		return alreadyYouHaveAccountTxt;
+	}
+
+	public WebElement getLoginLnk() {
+		return loginLnk;
+	}
+
+	public WebElement getRightNavneetPerkImg() {
+		return rightNavneetPerkImg;
+	}
+
+	// getter methods of forget page
+	public WebElement getPasswordSmartStoreLogo() {
+		return passwordSmartStoreLogo;
+	}
+
+	public WebElement getResetLoginPinTxt() {
+		return resetLoginPinTxt;
+	}
+
+	public WebElement getPleaseEnterTxt() {
+		return pleaseEnterTxt;
+	}
+
+	public WebElement getContactNumberTxtfd() {
+		return contactNumberTxtfd;
+	}
+
+	public WebElement getSendVerificationBtn() {
+		return sendVerificationBtn;
+	}
+
+	public WebElement getCreatePasswordLogo() {
+		return createPasswordLogo;
+	}
+
+	public WebElement getCreateSecutityPinTitleTxt() {
+		return createSecutityPinTitleTxt;
+	}
+
+	public WebElement getVerificationTxtfd() {
+		return verificationTxtfd;
+	}
+
+	public WebElement getPasswordTxt() {
+		return passwordTxt;
+	}
+
+	public WebElement getConfirmPasswordTxfd() {
+		return confirmPasswordTxfd;
+	}
+
+	public WebElement getChangeLoginPinBtn() {
+		return changeLoginPinBtn;
+	}
+
+	//* getter methods of how to use page
+	public WebElement getLanguageChangDropdown() {
+		return languageChangDropdown;
+	}
+
+	public List<WebElement> getLanguageDropdownOpts() {
+		return languageDropdownOpts;
+	}
+
+	public WebElement getLanguageHeaderTxt() {
+		return languageHeaderTxt;
+	}
+
+	public WebElement getTitleTxt() {
+		return titleTxt;
+	}
+
+	public List<WebElement> getHowtoUseListTxt() {
+		return howtoUseListTxt;
+	}
+
+	public WebElement getSendEmainTxt() {
+		return sendEmainTxt;
+	}
+
+	public WebElement getEmailLnk() {
+		return emailLnk;
+	}
+
+	/*verification methods*/
+	/**
+	 * @description this method is used to verify login.
+	 */
+	public void verifyLoginPage() {
+		waitTillElementIsDisplayedWithinTime(getLoginInToYourAccountTxt(),"LoginInToYourAccountTxt" , 20);
+		logger.info("verification of login page is started...");
+		elementIsDisplayed(getSmartDigiBookImg(), "SmartDigiBookImg");
+		elementIsDisplayed(getLoginInToYourAccountTxt(), "LoginInToYourAccountTxt");
+		elementIsDisplayed(getIndiaFlagImg(), "IndiaFlagImg");
+		elementIsDisplayed(getIndiaCountryCodeTxt(),"IndiaCountryCodeTxt");
+		elementIsDisplayed(getMobileNumberTxtfd(),"MobileNumberTxtfd");
+		elementIsDisplayed(getLoginPinTxt(),"LoginPinTxt");
+		elementIsDisplayed(getForgotPasswordLnk(),"ForgotPasswordLnk");
+		int i = 1;
+		for (WebElement element : getPasswordTxtfd()) {
+			elementIsDisplayed(element , "password"+(i++)+"Txtfd");
+		}
+		elementIsDisplayed(getLoginBtn(),"LoginBtn");
+		elementIsDisplayed(getAreYouNewUserTxt(),"AreYouNewUserTxt");
+		elementIsDisplayed(getCreateNewAccountBtn(),"CreateNewAccountTxt");
+		elementIsDisplayed(getHowToCreateAccountImg(),"HowToCreateAccountVideoImg");
+		elementIsDisplayed(getHowToUseLnk(),"HowToUseLnk");
+		elementIsDisplayed(getHowToUseImg(),"HowToUseVideoImg");
+		elementIsDisplayed(getStudyPerkImg(),"StudentPerkImg");
+		logger.info("verification of login page is completed successfully.");
+	}
+
+	/**
+	 * @description this method is used to login into the application.
+	 * @param mobileNumber <code>String</code>
+	 * @param password <code>String</code>
+	 */
+	public void loginIntoApplication(String mobileNumber, String password) {
+		for (int i = 0; i < 20; i++) {
+			if (checkIfElementIsDisplayed(getLoginInToYourAccountTxt(), "LoginInToYourAccountTxt")) {
+				break;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+			}
+		}
+		enterValue(getMobileNumberTxtfd(), "MobileNumberTxtfd", mobileNumber);
+		int charPosition = 0;
+		for (WebElement element : getPasswordTxtfd()) {
+			enterValue(element,"passwordTxtFd"+(charPosition+1), password.charAt(charPosition++) + "");
+		}
+		click(getLoginBtn(),"loginBtn");
+		click(getLoginBtn(),"loginBtn");
+		waitTillElementIsDisplayedWithinTime(getMyLibraryTxt(),"MyLibraryTxt" , 20);		
+	}
+
+	/**
+	 * @description this method is used to verify the create account page.
+	 */
+	public void verifyCreateAccountFeature(){
+		logger.info("verification of create account is started...");
+		elementIsDisplayed(getRegistrationLogo(), "RegistrationLogo");
+		elementIsDisplayed(getCreateYourAccountTitleTxt(), "CreateYourAccountTitleTxt");
+		elementIsDisplayed(getWhenWeLearnTxt(), "WhenWeLearnTxt");
+		elementIsDisplayed(getFirstNameTxtfd(), "FirstNameTxtfd");
+		elementIsDisplayed(getLastNameTxtfd(), "LastNameTxtfd");
+		elementIsDisplayed(getPinTxtFd(), "PinTxtFd");
+		elementIsDisplayed(getUseDigitsNumberTxt(), "UseDigitsNumberTxt");
+		elementIsDisplayed(getEmailTxtFd(), "EmailTxtfd");
+		elementIsDisplayed(getContactNumbetTxt(), "ContactNumberTxtfd");
+		elementIsDisplayed(getGetOptBtn(), "GetOptBtn");
+		elementIsDisplayed(getStateDropdown(), "StateDropdown");
+		click(getStateDropdown(), "StateDropdown");
+		logger.info("state names from the state dropdown..");
+		List<WebElement> stateOptions = getStateDropdownOpt();
+	    int i = 1;
+		for(WebElement element : stateOptions) {
+			elementIsDisplayed(element, (i++)+" "+element.getText());
+		}
+		click(stateOptions.get(3),stateOptions.get(3).getText() );
+		elementIsDisplayed(getCityDropDown(), "CityDropdown");
+		click(getCityDropDown(), "CityDropdown");
+		List<WebElement> cityOptions = getStateDropdownOpt();
+		i = 1;
+		for(WebElement element : cityOptions) {
+			elementIsDisplayed(element, (i++)+" "+element.getText());
+		}
+		click(cityOptions.get(3),cityOptions.get(3).getText() );
+		elementIsDisplayed(getAgreementCkbx(), "ArgeementCkbx");
+		elementIsDisplayed(getiAgreeWithTxt(), "IArgeementWihtTxt");
+		elementIsDisplayed(getPrivacyPoliceLnk(), "PrivacyPoliceLnk");
+		elementIsDisplayed(getContinueBtn(), "ContinueBtn");
+		elementIsDisplayed(getHavingTroubleTxt(), "HavingTroubleTxt");
+		elementIsDisplayed(getHavingTroubleImg(), "HavingTroubleImg");
+		elementIsDisplayed(getAlreadyYouHaveAccountTxt(), "AlreadyYouHaveAccountTxt");
+		elementIsDisplayed(getLoginLnk(), "LoginLnk");
+		elementIsDisplayed(getRightNavneetPerkImg(), "RightNavneetPerkImg");
+		logger.info("verification of create account is completed successfully.");
+	}
+	
+	/**
+	 * @description this method is used to verify forgot password feature.
+	 */
+	public void verifyForgotPassword() {
+		logger.info("verification of forgot passwor is started...");
+		elementIsDisplayed(getPasswordSmartStoreLogo(), "");
+		elementIsDisplayed(getResetLoginPinTxt(), "ResetLoginPinTxt");
+		elementIsDisplayed(getPleaseEnterTxt(), "PleaseEnterTxt");
+		elementIsDisplayed(getContactNumberTxtfd(), "ContactNumberTxtfd");
+		elementIsDisplayed(getSendVerificationBtn(), "SendVerificationBtn");
+		elementIsDisplayed(getCreateSecutityPinTitleTxt(), "CreateSecurityPinTitleTxt");
+		elementIsDisplayed(getVerificationTxtfd(), "VerificationTxtfd");
+		elementIsDisplayed(getPasswordTxt(), "PasswordTxtfd");
+		elementIsDisplayed(getConfirmPasswordTxfd(), "ConfirmPasswordTxfd");
+		elementIsDisplayed(getChangeLoginPinBtn(), "ChangeLoginPinBtn");
+		logger.info("verification of forgot passwor is complted successfully.");
+	}
+	
+	/**
+	 * @description this method is used to verify how to use
+	 */
+	public void verifyHowToUse() {
+		logger.info("verification of how to use is started...");
+		elementIsDisplayed(getLanguageChangDropdown(), "LanguageChangDropdown");
+		List<WebElement> languageOptions = getLanguageDropdownOpts();
+		for(WebElement element : languageOptions) {
+			elementIsDisplayed(element, element.getText());
+		}
+		elementIsDisplayed(getTitleTxt(), "LanguageTitleTxt");
+		List<WebElement> qas = getHowtoUseListTxt();
+		for(WebElement element : qas) {
+			elementIsDisplayed(element, element.getText());
+		}
+		elementIsDisplayed(getSendEmainTxt(), "SendEmainTxt");
+		elementIsDisplayed(getEmailLnk(), "EmailLnk");
+		logger.info("verification of how to use is completed successfully.");
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
