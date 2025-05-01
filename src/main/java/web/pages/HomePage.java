@@ -9,7 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage {
+import web.generic.WebElementActions;
+
+public class HomePage extends WebElementActions{
 
 	final static Logger logger = LogManager.getLogger(HomePage.class);
 	WebDriver driver;
@@ -19,7 +21,7 @@ public class HomePage {
 	}
 
 	//* elements of header navigation bar
-	@FindBy(className = "header-logo")
+	@FindBy(xpath = "//img[@class='header-logo']")
 	private WebElement headerSmartDigiBookLogo;
 
 	@FindBy(xpath = "//*[@id='redeem-access-button']/button")
@@ -46,7 +48,7 @@ public class HomePage {
 	@FindBy(xpath = "//*[@id='userWallet']/p")
 	private WebElement headerWalletAmountTxt;
 
-	@FindBy(className = "arrowIconButton")
+	@FindBy(xpath = "//*[@class = 'arrowIconButton']")
 	private WebElement headerProfileBtn;
 
 	@FindBy(xpath = "//*[@class='arrowIconButton']/div")
@@ -56,7 +58,7 @@ public class HomePage {
 	private WebElement headerProfileImg;
 
 	//* element of my library
-	@FindBy(className = "slider animated")
+	@FindBy(css = ".slider.animated")
 	private WebElement banner;
 
 	@FindBy(className = "myLibrary-title")
@@ -440,7 +442,50 @@ public class HomePage {
 		return appTourTxt;
 	}
 	
-	
-	
+	/**
+	 * @description this method is used to verify header of home
+	 */
+	public void verifyHeaderOfHome(){
+		logger.info("verification of header of home is started...");
+		elementIsDisplayed(getHeaderSmartDigiBookLogo(), "HeaderSmartDigiBookLogo");
+		elementIsDisplayed(getHeaderRedeemAccessBtn(), "HeaderRedeemAccessBtn");
+		elementIsDisplayed(getContactUsBtn(), "ContactUsBtn");
+		elementIsDisplayed(getHeaderNotificationBtn(), "HeaderNotificationBtn");
+		elementIsDisplayed(getHeaderWishlistBtn(), "HeaderWishlistBtn");
+		elementIsDisplayed(getHeaderCartBtn(), "HeaderCartBtn");
+		elementIsDisplayed(getHeaderUserWalletBtn(), "HeaderUserWalletBtn");
+		elementIsDisplayed(getHeaderWalletImg(), "HeaderWalletImg");
+		elementIsDisplayed(getHeaderWalletAmountTxt(), "HeaderWalletAmountTxt");
+		elementIsDisplayed(getHeaderProfileBtn(), "HeaderProfileBtn");
+		elementIsDisplayed(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");
+		elementIsDisplayed(getHeaderProfileImg(), "HeaderProfileImg");
+		logger.info("verification of header of home is completed successfully.");
+	}
+
+	/**
+	 * @description this method is used to verify my library and my books sections.
+	 */
+	public void verifyMyLibrary(){
+		logger.info("verification of my library and my books section is started...");
+		scrollToElementByActions(getBookNameTxt(), "BookNameTxt");
+		elementIsDisplayed(getBanner(), "Banner");
+		elementIsDisplayed(getMyLibraryTxt(), "LibraryTxt");
+		elementIsDisplayed(getSearchTxtfd(), "SearchTxtfd");
+		List<WebElement> categories = getCategotiesTxt();
+		for(WebElement element : categories){
+			elementIsDisplayed(element, element.getText());
+		}
+		elementIsDisplayed(getMyBooksTxt(), "MyBooksTxt");
+		String bookName = getTextFromElement(getBookNameTxt(), "getBookNameTxt");
+		logger.info("My Books Section First Book Name is :: "+bookName);
+		elementIsDisplayed(getBookProgressbarImg(), "BookProgressbarImg");
+		elementIsDisplayed(getFeedbackImg(), "FeedbackImg");
+		elementIsDisplayed(getBookImg(), "BookImg");
+		elementIsDisplayed(getBookNameTxt(), "BookNameTxt");
+		elementIsDisplayed(getPremiumLabelSec(), "PremiumLabelSec");
+		elementIsDisplayed(getPremiunLabelImg(), "PremiunLabelImg");
+		elementIsDisplayed(getPremiumLabel(), "PremiumLabel");
+		logger.info("verification of my library and my books section is completed successfully.");
+	}
 
 }

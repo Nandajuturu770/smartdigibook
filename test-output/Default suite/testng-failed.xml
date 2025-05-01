@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="web.LoginPageTests">
+      <class name="web.HomePageTests">
         <methods>
           <include name="setupBrowser"/>
-          <include name="tearDownBwoser"/>
-          <include name="verifyLoginFeaturesAndLoginIntoApplication"/>
           <include name="initialization"/>
+          <include name="verifyHomePage"/>
+          <include name="tearDownBwoser"/>
         </methods>
-      </class> <!-- web.LoginPageTests -->
+      </class> <!-- web.HomePageTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

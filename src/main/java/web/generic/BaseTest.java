@@ -34,7 +34,7 @@ public class BaseTest {
 
 	@AfterClass
 	public void tearDownBwoser(){
-		//driver.close();
+		driver.close();
 	}
 
 }
