@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v130.page.model.NavigationEntry;
 import org.openqa.selenium.devtools.v130.pwa.PWA.GetOsAppStateResponse;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -155,7 +156,7 @@ public class LoginPage extends WebElementActions {
 	@FindBy(id = "contactNumber")
 	private WebElement contactNumberTxtfd;
 
-	@FindBy(id = "//*[@class='forgot-password-loginButton']/button")
+	@FindBy(xpath = "//*[@class='forgot-password-loginButton']/button")
 	private WebElement sendVerificationBtn;
 
 	@FindBy(xpath = "//a[@href='/login']/img")
@@ -173,7 +174,7 @@ public class LoginPage extends WebElementActions {
 	@FindBy(id = "confirmPassword")
 	private WebElement confirmPasswordTxfd;
 
-	@FindBy(id = "//*[@class='forgot-password-loginButton']/button")
+	@FindBy(xpath = "//*[@class='forgot-password-loginButton']/button")
 	private WebElement changeLoginPinBtn;
 
 	//* element of how to use page
@@ -488,13 +489,16 @@ public class LoginPage extends WebElementActions {
 		click(getLoginBtn(),"loginBtn");
 		click(getLoginBtn(),"loginBtn");
 		waitTillElementIsDisplayedWithinTime(getMyLibraryTxt(),"MyLibraryTxt" , 20);		
+		addCookies("App_promotion_popup", "true");
 	}
 
 	/**
 	 * @description this method is used to verify the create account page.
 	 */
 	public void verifyCreateAccountFeature(){
+		click(getCreateNewAccountBtn(), "CreateNewAccountBtn");
 		logger.info("verification of create account is started...");
+		waitTillElementIsDisplayedWithinTime(getCreateYourAccountTitleTxt(), "getCreateYourAccountTitleTxt", 5);
 		elementIsDisplayed(getRegistrationLogo(), "RegistrationLogo");
 		elementIsDisplayed(getCreateYourAccountTitleTxt(), "CreateYourAccountTitleTxt");
 		elementIsDisplayed(getWhenWeLearnTxt(), "WhenWeLearnTxt");
@@ -509,11 +513,12 @@ public class LoginPage extends WebElementActions {
 		click(getStateDropdown(), "StateDropdown");
 		logger.info("state names from the state dropdown..");
 		List<WebElement> stateOptions = getStateDropdownOpt();
-	    int i = 1;
+		int i = 1;
 		for(WebElement element : stateOptions) {
 			elementIsDisplayed(element, (i++)+" "+element.getText());
 		}
 		click(stateOptions.get(3),stateOptions.get(3).getText() );
+		waitTillElementIsDisplayedWithinTime(getCityDropDown(), "getCityDropDown", 5);
 		elementIsDisplayed(getCityDropDown(), "CityDropdown");
 		click(getCityDropDown(), "CityDropdown");
 		List<WebElement> cityOptions = getStateDropdownOpt();
@@ -522,6 +527,8 @@ public class LoginPage extends WebElementActions {
 			elementIsDisplayed(element, (i++)+" "+element.getText());
 		}
 		click(cityOptions.get(3),cityOptions.get(3).getText() );
+		waitTillElementIsDisplayedWithinTime(getCityDropDown(), "getCityDropDown", 5);
+		scrollToElementByActions(getLoginLnk(), "getLoginLnk");
 		elementIsDisplayed(getAgreementCkbx(), "ArgeementCkbx");
 		elementIsDisplayed(getiAgreeWithTxt(), "IArgeementWihtTxt");
 		elementIsDisplayed(getPrivacyPoliceLnk(), "PrivacyPoliceLnk");
@@ -531,32 +538,40 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getAlreadyYouHaveAccountTxt(), "AlreadyYouHaveAccountTxt");
 		elementIsDisplayed(getLoginLnk(), "LoginLnk");
 		elementIsDisplayed(getRightNavneetPerkImg(), "RightNavneetPerkImg");
+		navigateBack();
 		logger.info("verification of create account is completed successfully.");
 	}
-	
+
 	/**
 	 * @description this method is used to verify forgot password feature.
 	 */
 	public void verifyForgotPassword() {
+		click(getForgotPasswordLnk(),"getForgotPasswordLnk");
 		logger.info("verification of forgot passwor is started...");
-		elementIsDisplayed(getPasswordSmartStoreLogo(), "");
+		waitTillElementIsDisplayedWithinTime(getResetLoginPinTxt(), "getResetLoginPinTxt", 5);
+		elementIsDisplayed(getPasswordSmartStoreLogo(), "getPasswordSmartStoreLogo");
 		elementIsDisplayed(getResetLoginPinTxt(), "ResetLoginPinTxt");
 		elementIsDisplayed(getPleaseEnterTxt(), "PleaseEnterTxt");
 		elementIsDisplayed(getContactNumberTxtfd(), "ContactNumberTxtfd");
+		enterValue(getContactNumberTxtfd(),"getContactNumberTxtfd", "7702425817");
 		elementIsDisplayed(getSendVerificationBtn(), "SendVerificationBtn");
+		click(getSendVerificationBtn(), "getSendVerificationBtn");
 		elementIsDisplayed(getCreateSecutityPinTitleTxt(), "CreateSecurityPinTitleTxt");
 		elementIsDisplayed(getVerificationTxtfd(), "VerificationTxtfd");
 		elementIsDisplayed(getPasswordTxt(), "PasswordTxtfd");
 		elementIsDisplayed(getConfirmPasswordTxfd(), "ConfirmPasswordTxfd");
 		elementIsDisplayed(getChangeLoginPinBtn(), "ChangeLoginPinBtn");
+		navigateBack();
 		logger.info("verification of forgot passwor is complted successfully.");
 	}
-	
+
 	/**
 	 * @description this method is used to verify how to use
 	 */
 	public void verifyHowToUse() {
+		click(getHowToUseLnk(), "getHowToUseLnk");
 		logger.info("verification of how to use is started...");
+		waitTillElementIsDisplayedWithinTime(getLanguageChangDropdown(), "getLanguageChangDropdown", 5);
 		elementIsDisplayed(getLanguageChangDropdown(), "LanguageChangDropdown");
 		List<WebElement> languageOptions = getLanguageDropdownOpts();
 		for(WebElement element : languageOptions) {
@@ -569,37 +584,7 @@ public class LoginPage extends WebElementActions {
 		}
 		elementIsDisplayed(getSendEmainTxt(), "SendEmainTxt");
 		elementIsDisplayed(getEmailLnk(), "EmailLnk");
+		navigateBack();
 		logger.info("verification of how to use is completed successfully.");
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

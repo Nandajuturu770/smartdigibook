@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
-public class WebElementActions {
+public class WebElementActions extends BrowserActions {
 
 	final static Logger logger = LogManager.getLogger(WebElementActions.class);
 
@@ -88,7 +88,7 @@ public class WebElementActions {
 			Assert.fail("element is not found \n" + exception.getMessage());
 		}
 	}
-	
+
 	/**
 	 * @description this method is used to verify check box is selected or not.
 	 * @param element <code>WebElement</code>
@@ -106,6 +106,26 @@ public class WebElementActions {
 			Assert.fail("element is not found \n" + exception.getMessage());
 		}
 		logger.info(elementName + " is \" not \" selected");
+		return false;
+	}
+
+	/**
+	 * @description <bold>this method is used to verify element is enabled or not</bold>
+	 * @param element <code>WebElement</code>
+	 * @param elementName <code>String</code>
+	 * @return <code>boolean</code> -> true if element is enabled otherwise false
+	 */
+	public static boolean checkElementIsEnabled(WebElement element , String elementName) {
+		try {
+			boolean result = element.isEnabled();
+			if(result) {
+				logger.info(elementName + " is enabled");
+				return true;
+			}
+		} catch (Exception exception) {
+
+		}
+		logger.info(elementName + " is \" not \" enabled");
 		return false;
 	}
 
@@ -187,7 +207,7 @@ public class WebElementActions {
 	 */
 	public static boolean waitTillElementIsDisplayedWithinTime(WebElement element, String elementName, int sec) {
 		boolean status = false;
-		for (int i = 0; i < sec; i++) {
+		for (int i = 1; i <= sec; i++) {
 			logger.info("loading...");
 			try {
 				status = element.isDisplayed();
@@ -211,12 +231,12 @@ public class WebElementActions {
 	 * @param cookieName <code>String</code>
 	 * @param cookieValue <code>String</code>
 	 */
-	public void addCookies(String cookieName, String cookieValue) {
-		Cookie cookie = new Cookie(cookieName, cookieValue);
+	public void addCookies(String cookieName, String cookieStatus) {
+		Cookie cookie = new Cookie(cookieName, cookieStatus);
 		BaseTest.driver.manage().addCookie(cookie);
-		logger.info(cookieName + " is added successfully in " + cookieValue + " status");
+		logger.info(cookieName + " is added successfully in " + cookieStatus + " status");
 	}
-	
+
 
 	/**
 	 * @description this method is used to get text of element

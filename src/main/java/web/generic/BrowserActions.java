@@ -37,8 +37,6 @@ public class BrowserActions  {
 		}
 	}
 	
-
-
 	/**
 	 * @description this method is used to refresh the page.
 	 */
@@ -133,6 +131,4 @@ public class BrowserActions  {
 		}
 		return null;	
 	}
-
-
 }
