@@ -2,9 +2,7 @@ package web.generic;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -95,7 +93,7 @@ public class WebElementActions extends BrowserActions {
 	 * @param elementName <code>String</code>
 	 * @return status <code>boolean</code>
 	 */
-	public static boolean checkElementIsSeteted(WebElement element, String elementName) {
+	public static boolean checkElementIsSelected(WebElement element, String elementName) {
 		try {
 			String result = element.getDomProperty("value");
 			if(result.equals("true")) {

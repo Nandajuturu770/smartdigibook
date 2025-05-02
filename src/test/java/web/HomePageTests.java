@@ -29,5 +29,6 @@ public class HomePageTests extends BaseTest {
 	public void verifyHomePage() {
 		homePage.verifyHeaderOfHome();
 		homePage.verifyMyLibrary();
+		homePage.verifyHelpCenterFeature(true);
 	}
 }

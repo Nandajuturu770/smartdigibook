@@ -6,11 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v130.page.model.NavigationEntry;
-import org.openqa.selenium.devtools.v130.pwa.PWA.GetOsAppStateResponse;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 
 import web.generic.WebElementActions;
 
@@ -102,7 +99,7 @@ public class LoginPage extends WebElementActions {
 	private WebElement emailTxtFd;
 
 	@FindBy(id = "contactNumber")
-	private WebElement contactNumbetTxt;
+	private WebElement contactnumberTxt;
 
 	@FindBy(xpath = "//*[contains(@class,'absolute right')]/button")
 	private WebElement getOptBtn;
@@ -163,7 +160,7 @@ public class LoginPage extends WebElementActions {
 	private WebElement createPasswordLogo;
 
 	@FindBy(className = "create-security-pin")
-	private WebElement createSecutityPinTitleTxt;
+	private WebElement createSecurityPinTitleTxt;
 
 	@FindBy(id = "verificationCode")
 	private WebElement verificationTxtfd;
@@ -194,7 +191,7 @@ public class LoginPage extends WebElementActions {
 	private List<WebElement> howtoUseListTxt;
 
 	@FindBy(className = "send-email-text")
-	private WebElement sendEmainTxt;
+	private WebElement sendEmailTxt;
 
 	@FindBy(xpath = "//a[@href='mailto:support@smartdigibook.com']")
 	private WebElement emailLnk;
@@ -308,8 +305,8 @@ public class LoginPage extends WebElementActions {
 		return emailTxtFd;
 	}
 
-	public WebElement getContactNumbetTxt() {
-		return contactNumbetTxt;
+	public WebElement getContactNumberTxt() {
+		return contactnumberTxt;
 	}
 
 	public WebElement getGetOptBtn() {
@@ -389,8 +386,8 @@ public class LoginPage extends WebElementActions {
 		return createPasswordLogo;
 	}
 
-	public WebElement getCreateSecutityPinTitleTxt() {
-		return createSecutityPinTitleTxt;
+	public WebElement getCreateSecurityPinTitleTxt() {
+		return createSecurityPinTitleTxt;
 	}
 
 	public WebElement getVerificationTxtfd() {
@@ -430,8 +427,8 @@ public class LoginPage extends WebElementActions {
 		return howtoUseListTxt;
 	}
 
-	public WebElement getSendEmainTxt() {
-		return sendEmainTxt;
+	public WebElement getSendEmailTxt() {
+		return sendEmailTxt;
 	}
 
 	public WebElement getEmailLnk() {
@@ -481,6 +478,7 @@ public class LoginPage extends WebElementActions {
 			} catch (Exception e) {
 			}
 		}
+		logger.info("system is trying to login into application...");
 		enterValue(getMobileNumberTxtfd(), "MobileNumberTxtfd", mobileNumber);
 		int charPosition = 0;
 		for (WebElement element : getPasswordTxtfd()) {
@@ -490,6 +488,7 @@ public class LoginPage extends WebElementActions {
 		click(getLoginBtn(),"loginBtn");
 		waitTillElementIsDisplayedWithinTime(getMyLibraryTxt(),"MyLibraryTxt" , 20);		
 		addCookies("App_promotion_popup", "true");
+		logger.info("system logined into application with desired capabilities successfully.\n");
 	}
 
 	/**
@@ -507,7 +506,7 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getPinTxtFd(), "PinTxtFd");
 		elementIsDisplayed(getUseDigitsNumberTxt(), "UseDigitsNumberTxt");
 		elementIsDisplayed(getEmailTxtFd(), "EmailTxtfd");
-		elementIsDisplayed(getContactNumbetTxt(), "ContactNumberTxtfd");
+		elementIsDisplayed(getContactNumberTxt(), "ContactNumberTxtfd");
 		elementIsDisplayed(getGetOptBtn(), "GetOptBtn");
 		elementIsDisplayed(getStateDropdown(), "StateDropdown");
 		click(getStateDropdown(), "StateDropdown");
@@ -529,8 +528,8 @@ public class LoginPage extends WebElementActions {
 		click(cityOptions.get(3),cityOptions.get(3).getText() );
 		waitTillElementIsDisplayedWithinTime(getCityDropDown(), "getCityDropDown", 5);
 		scrollToElementByActions(getLoginLnk(), "getLoginLnk");
-		elementIsDisplayed(getAgreementCkbx(), "ArgeementCkbx");
-		elementIsDisplayed(getiAgreeWithTxt(), "IArgeementWihtTxt");
+		elementIsDisplayed(getAgreementCkbx(), "AgreementCkbx");
+		elementIsDisplayed(getiAgreeWithTxt(), "IAgreementWithTxt");
 		elementIsDisplayed(getPrivacyPoliceLnk(), "PrivacyPoliceLnk");
 		elementIsDisplayed(getContinueBtn(), "ContinueBtn");
 		elementIsDisplayed(getHavingTroubleTxt(), "HavingTroubleTxt");
@@ -547,7 +546,7 @@ public class LoginPage extends WebElementActions {
 	 */
 	public void verifyForgotPassword() {
 		click(getForgotPasswordLnk(),"getForgotPasswordLnk");
-		logger.info("verification of forgot passwor is started...");
+		logger.info("verification of forgot password is started...");
 		waitTillElementIsDisplayedWithinTime(getResetLoginPinTxt(), "getResetLoginPinTxt", 5);
 		elementIsDisplayed(getPasswordSmartStoreLogo(), "getPasswordSmartStoreLogo");
 		elementIsDisplayed(getResetLoginPinTxt(), "ResetLoginPinTxt");
@@ -556,13 +555,13 @@ public class LoginPage extends WebElementActions {
 		enterValue(getContactNumberTxtfd(),"getContactNumberTxtfd", "7702425817");
 		elementIsDisplayed(getSendVerificationBtn(), "SendVerificationBtn");
 		click(getSendVerificationBtn(), "getSendVerificationBtn");
-		elementIsDisplayed(getCreateSecutityPinTitleTxt(), "CreateSecurityPinTitleTxt");
+		elementIsDisplayed(getCreateSecurityPinTitleTxt(), "CreateSecurityPinTitleTxt");
 		elementIsDisplayed(getVerificationTxtfd(), "VerificationTxtfd");
 		elementIsDisplayed(getPasswordTxt(), "PasswordTxtfd");
 		elementIsDisplayed(getConfirmPasswordTxfd(), "ConfirmPasswordTxfd");
 		elementIsDisplayed(getChangeLoginPinBtn(), "ChangeLoginPinBtn");
 		navigateBack();
-		logger.info("verification of forgot passwor is complted successfully.");
+		logger.info("verification of forgot password is completed successfully.");
 	}
 
 	/**
@@ -582,7 +581,7 @@ public class LoginPage extends WebElementActions {
 		for(WebElement element : qas) {
 			elementIsDisplayed(element, element.getText());
 		}
-		elementIsDisplayed(getSendEmainTxt(), "SendEmainTxt");
+		elementIsDisplayed(getSendEmailTxt(), "SendEmailTxt");
 		elementIsDisplayed(getEmailLnk(), "EmailLnk");
 		navigateBack();
 		logger.info("verification of how to use is completed successfully.");

@@ -11,10 +11,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import web.generic.WebElementActions;
 
-public class HomePage extends WebElementActions{
+public class HomePage extends WebElementActions {
 
 	final static Logger logger = LogManager.getLogger(HomePage.class);
 	WebDriver driver;
+
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -68,7 +69,7 @@ public class HomePage extends WebElementActions{
 	private WebElement searchTxtfd;
 
 	@FindBy(className = "category-paragraph")
-	private List<WebElement> categotiesTxt;
+	private List<WebElement> categoriesTxt;
 
 	@FindBy(className = "sub-header-title")
 	private WebElement myBooksTxt;
@@ -76,10 +77,10 @@ public class HomePage extends WebElementActions{
 	@FindBy(xpath = "//*[@role='progressbar']")
 	private WebElement bookProgressbarImg;
 
-	@FindBy(className= "progress-value")
+	@FindBy(className = "progress-value")
 	private WebElement progressValueTxt;
 
-	@FindBy(xpath= "//*[@class='feedback-logo-div']/img")
+	@FindBy(xpath = "//*[@class='feedback-logo-div']/img")
 	private WebElement feedbackImg;
 
 	@FindBy(className = "Mybook-img")
@@ -92,17 +93,17 @@ public class HomePage extends WebElementActions{
 	private WebElement premiumLabelSec;
 
 	@FindBy(xpath = "//*[@class='my-book-premium-label']/img")
-	private WebElement premiunLabelImg;
+	private WebElement premiumLabelImg;
 
 	@FindBy(xpath = "//*[@class='my-book-premium-label']/span")
 	private WebElement premiumLabel;
-	
+
 	//* Recently Viewed Books
 	@FindBy(xpath = "//*[text()='Recently Viewed']")
 	private WebElement recentlyViewedTitleTxt;
 
 	@FindBy(xpath = "//*[text()='Recently Viewed']/..//span")
-	private WebElement recentlyViewdFeedbackImg;
+	private WebElement recentlyviewedFeedbackImg;
 
 	@FindBy(xpath = "//*[text()='Recently Viewed']/..//img[@class='horizontalScrollBar-img']")
 	private WebElement recentlyViewedBookImg;
@@ -121,7 +122,7 @@ public class HomePage extends WebElementActions{
 	private WebElement activityBookCoverImg;
 
 	@FindBy(xpath = "//*[@class='convertType-recentActivities']")
-	private WebElement activityNammeTXt;
+	private WebElement activityNameTXt;
 
 	@FindBy(xpath = "//*[@class='annotations-card-footer']/div/span")
 	private WebElement activityPageNumberTxt;
@@ -163,44 +164,44 @@ public class HomePage extends WebElementActions{
 
 	@FindBy(xpath = "//*[contains(text(), 'Promotional')]/..//*[@class='horizontalscroller-subTitle']")
 	private WebElement promotionalBookNameTxt;
-	
+
 	//* Help Center Feature
 	@FindBy(xpath = "//*[@alt='Scroll to Top']")
 	private WebElement scrollToTopImg;
-	
+
 	@FindBy(xpath = "//*[@class ='react-draggable']/img")
 	private WebElement helpCentreBtn;
-	
+
 	@FindBy(xpath = "//*[@class ='needHelp_label']")
 	private WebElement needHelpTxt;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_close']")
 	private WebElement needHelpCloseBtn;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_contact_us']")
 	private WebElement contactUsImg;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_contact_us']/following-sibling::p")
 	private WebElement contactUsTxt;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_whatsapp']")
 	private WebElement whatsAppImg;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_whatsapp']/following-sibling::p")
 	private WebElement whatsAppTxt;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_faqs']")
 	private WebElement faqImg;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_faqs']/following-sibling::p")
 	private WebElement faqTxt;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_app_tour']")
 	private WebElement appTourImg;
-	
+
 	@FindBy(xpath = "//*[@alt ='help_center_app_tour']/following-sibling::p")
 	private WebElement appTourTxt;
-	
+
 	/* Getter Methods */
 	public static Logger getLogger() {
 		return logger;
@@ -270,8 +271,8 @@ public class HomePage extends WebElementActions{
 		return searchTxtfd;
 	}
 
-	public List<WebElement> getCategotiesTxt() {
-		return categotiesTxt;
+	public List<WebElement> getCategoriesTxt() {
+		return categoriesTxt;
 	}
 
 	public WebElement getMyBooksTxt() {
@@ -302,8 +303,8 @@ public class HomePage extends WebElementActions{
 		return premiumLabelSec;
 	}
 
-	public WebElement getPremiunLabelImg() {
-		return premiunLabelImg;
+	public WebElement getPremiumLabelImg() {
+		return premiumLabelImg;
 	}
 
 	public WebElement getPremiumLabel() {
@@ -314,8 +315,8 @@ public class HomePage extends WebElementActions{
 		return recentlyViewedTitleTxt;
 	}
 
-	public WebElement getRecentlyViewdFeedbackImg() {
-		return recentlyViewdFeedbackImg;
+	public WebElement getRecentlyViewedFeedbackImg() {
+		return recentlyviewedFeedbackImg;
 	}
 
 	public WebElement getRecentlyViewedBookImg() {
@@ -338,8 +339,8 @@ public class HomePage extends WebElementActions{
 		return activityBookCoverImg;
 	}
 
-	public WebElement getActivityNammeTXt() {
-		return activityNammeTXt;
+	public WebElement getActivityNameTXt() {
+		return activityNameTXt;
 	}
 
 	public WebElement getActivityPageNumberTxt() {
@@ -441,11 +442,11 @@ public class HomePage extends WebElementActions{
 	public WebElement getAppTourTxt() {
 		return appTourTxt;
 	}
-	
+
 	/**
 	 * @description this method is used to verify header of home
 	 */
-	public void verifyHeaderOfHome(){
+	public void verifyHeaderOfHome() {
 		logger.info("verification of header of home is started...");
 		elementIsDisplayed(getHeaderSmartDigiBookLogo(), "HeaderSmartDigiBookLogo");
 		elementIsDisplayed(getHeaderRedeemAccessBtn(), "HeaderRedeemAccessBtn");
@@ -459,33 +460,125 @@ public class HomePage extends WebElementActions{
 		elementIsDisplayed(getHeaderProfileBtn(), "HeaderProfileBtn");
 		elementIsDisplayed(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");
 		elementIsDisplayed(getHeaderProfileImg(), "HeaderProfileImg");
-		logger.info("verification of header of home is completed successfully.");
+		logger.info("verification of header of home is completed successfully.\n");
 	}
 
 	/**
-	 * @description this method is used to verify my library and my books sections.
+	 * @description this method is used to verify my library and my books
+	 * sections.
 	 */
-	public void verifyMyLibrary(){
+	public void verifyMyLibrary() {
 		logger.info("verification of my library and my books section is started...");
 		scrollToElementByActions(getBookNameTxt(), "BookNameTxt");
 		elementIsDisplayed(getBanner(), "Banner");
 		elementIsDisplayed(getMyLibraryTxt(), "LibraryTxt");
 		elementIsDisplayed(getSearchTxtfd(), "SearchTxtfd");
-		List<WebElement> categories = getCategotiesTxt();
-		for(WebElement element : categories){
+		List<WebElement> categories = getCategoriesTxt();
+		for (WebElement element : categories) {
 			elementIsDisplayed(element, element.getText());
 		}
 		elementIsDisplayed(getMyBooksTxt(), "MyBooksTxt");
 		String bookName = getTextFromElement(getBookNameTxt(), "getBookNameTxt");
-		logger.info("My Books Section First Book Name is :: "+bookName);
+		logger.info("My Books Section First Book Name is :: " + bookName);
 		elementIsDisplayed(getBookProgressbarImg(), "BookProgressbarImg");
 		elementIsDisplayed(getFeedbackImg(), "FeedbackImg");
 		elementIsDisplayed(getBookImg(), "BookImg");
 		elementIsDisplayed(getBookNameTxt(), "BookNameTxt");
 		elementIsDisplayed(getPremiumLabelSec(), "PremiumLabelSec");
-		elementIsDisplayed(getPremiunLabelImg(), "PremiunLabelImg");
+		elementIsDisplayed(getPremiumLabelImg(), "PremiumLabelImg");
 		elementIsDisplayed(getPremiumLabel(), "PremiumLabel");
-		logger.info("verification of my library and my books section is completed successfully.");
+		logger.info("verification of my library and my books section is completed successfully.\n");
 	}
 
+	/**
+	 * @description this method is used to verify recent viewed books
+	 */
+	public void verifyRecentViewedBooks() {
+		logger.info("verification of recent viewed books is started...");
+		elementIsDisplayed(getRecentlyViewedTitleTxt(), "RecentlyViewedTitleTxt");
+		elementIsDisplayed(getRecentlyViewedFeedbackImg(), "RecentlyViewedFeedbackImg");
+		elementIsDisplayed(getRecentlyViewedBookImg(), "RecentlyViewedBookImg");
+		elementIsDisplayed(getRecentlyViewedBookNameTxt(), "RecentlyViewedBookNameTxt");
+		String bookName = getTextFromElement(getRecentlyViewedBookNameTxt(), "RecentlyViewedBookNameTxt");
+		logger.info("recent viewed book name is :: " + bookName);
+		logger.info("verification of recent viewed books is completed successfully.\n");
+	}
+
+	/**
+	 * @description this method is used to verify recently activity.
+	 */
+	public void verifyRecentlyActivity() {
+		logger.info("verification of recently activity is started...");
+		elementIsDisplayed(getActivityImg(), "ActivityImg");
+		elementIsDisplayed(getActivityBookNameTxt(), "ActivityBookNameTxt");
+		String bookName = getTextFromElement(getActivityBookNameTxt(), "ActivityBookNameTxt");
+		logger.info("recently activity book name is :: " + bookName);
+		elementIsDisplayed(getActivityBookCoverImg(), "ActivityBookCoverImg");
+		elementIsDisplayed(getActivityNameTXt(), "ActivityNameTXt");
+		String activityName = getTextFromElement(getActivityNameTXt(), "ActivityNameTXt");
+		logger.info("recently activity name is :: " + activityName);
+		elementIsDisplayed(getActivityPageNumberTxt(), "ActivityPageNumberTxt");
+		elementIsDisplayed(getActivityNavigationBtn(), "ActivityNavigationBtn");
+		logger.info("verification of recently activity is completed successfully.\n");
+	}
+
+	/**
+	 * @description this method is used to verify the smart store.
+	 * @param cartOrWish <code>String</code>
+	 */
+	public void verifyTheSmartStore(String cartOrWish) {
+		logger.info("verification of the smart store is started...");
+		elementIsDisplayed(getTheSmartStoreTitleTxt(), "TheSmartStoreTitleTxt");
+		elementIsDisplayed(getTheSmartStoreViewAllLnk(), "TheSmartStoreViewAllLnk");
+		elementIsDisplayed(getTssBookCoverImg(), "TssBookCoverImg");
+		elementIsDisplayed(getTssBookNameTxt(), "TssBookNameTxt");
+		String bookName = getTextFromElement(getTssBookNameTxt(), "TssBookNameTxt");
+		logger.info("tss book name is :: " + bookName);
+		elementIsDisplayed(getTssBookPriceTxt(), "TssBookPriceTxt");
+		String bookPrice = getTextFromElement(getTssBookPriceTxt(), "TssBookPriceTxt");
+		logger.info("tss book price is :: " + bookPrice);
+		elementIsDisplayed(getTssBookHeartBtn(), "TssBookHeartBtn");
+		click(getTssBookHeartBtn(), "TssBookHeartBtn");
+		elementIsDisplayed(getTssBookPremiumImg(), "TssBookPremiumImg");
+		elementIsDisplayed(getAddToCartOrGoToCartBtn(), "AddToCartOrGoToCartBtn");
+		logger.info("verification of the smart store is completed successfully.\n");
+	}
+
+	/**
+	 * @description this method is used to verify promotional books
+	 */
+	public void verifyPromotionalBooks() {
+		logger.info("verification of promotional books is started...");
+		elementIsDisplayed(getThePromotionalTitleTxt(), "ThePromotionalTitleTxt");
+		elementIsDisplayed(getPromotionalBookCoverImg(), "PromotionalBookCoverImg");
+		elementIsDisplayed(getPromotionalBookNameTxt(), "PromotionalBookNameTxt");
+		String bookName = getTextFromElement(getPromotionalBookNameTxt(), "PromotionalBookNameTxt");
+		logger.info("promotional book name is :: " + bookName);
+		logger.info("verification of promotional books is completed successfully.\n");
+	}
+
+	/**
+	 * @description this method is used to verify the help center icon.
+	 * @param close <code>boolean</code> if true the pop up is closed otherwise
+	 * false.
+	 */
+	public void verifyHelpCenterFeature(boolean close) {
+		logger.info("verification of help center feature is started...");
+		elementIsDisplayed(getHelpCentreBtn(), "HelpCentreBtn");
+		click(getHelpCentreBtn(), "HelpCentreBtn");
+		elementIsDisplayed(getNeedHelpTxt(), "NeedHelpTxt");
+		elementIsDisplayed(getNeedHelpCloseBtn(), "NeedHelpCloseBtn");
+		elementIsDisplayed(getContactUsImg(), "ContactUsImg");
+		elementIsDisplayed(getContactUsTxt(), "ContactUsTxt");
+		elementIsDisplayed(getWhatsAppImg(), "WhatsAppImg");
+		elementIsDisplayed(getWhatsAppTxt(), "WhatsAppTxt");
+		elementIsDisplayed(getFaqImg(), "FaqImg");
+		elementIsDisplayed(getFaqTxt(), "FaqTxt");
+		elementIsDisplayed(getAppTourImg(), "AppTourImg");
+		elementIsDisplayed(getAppTourTxt(), "AppTourTxt");
+		if (close) {
+			click(getNeedHelpCloseBtn(), "NeedHelpCloseBtn");
+		}
+		logger.info("verification of help center feature is completed successfully.\n");
+	}
 }
