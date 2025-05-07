@@ -24,11 +24,15 @@ public class HomePageTests extends BaseTest {
 		homePage = new HomePage(driver);
 		loginPage.loginIntoApplication(mobileNumber, password);
 	}
-	
+
 	@Test
 	public void verifyHomePage() {
 		homePage.verifyHeaderOfHome();
 		homePage.verifyMyLibrary();
+		homePage.verifyRecentViewedBooks();
+		homePage.verifyRecentlyActivity();
+		homePage.verifyTheSmartStore("cart");
+		homePage.verifyPromotionalBooks();
 		homePage.verifyHelpCenterFeature(true);
 	}
 }

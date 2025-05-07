@@ -1,15 +1,21 @@
 package web.generic;
 
+import java.time.Duration;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class WebElementActions extends BrowserActions {
 
 	final static Logger logger = LogManager.getLogger(WebElementActions.class);
+
+	private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 	public static Actions actions = new Actions(BaseTest.driver);
 
@@ -41,7 +47,7 @@ public class WebElementActions extends BrowserActions {
 			status = element.isDisplayed();
 			logger.info(elementName + " is displayed");
 		} catch (Exception e) {
-			logger.info(elementName + "is \" not \" is not displayed");
+			logger.info(elementName + " is \" not \" displayed");
 		}
 		return status;
 
@@ -131,7 +137,7 @@ public class WebElementActions extends BrowserActions {
 	 * @description this method is used to click by using actions class.
 	 * @param element <code>WebElement</code>
 	 */
-	public static void clinkByActions(WebElement element, String elementName) {
+	public static void clickByActions(WebElement element, String elementName) {
 		try {
 			actions.click(element).perform();
 			logger.info(elementName + " is clicked");
@@ -229,7 +235,7 @@ public class WebElementActions extends BrowserActions {
 	 * @param cookieName <code>String</code>
 	 * @param cookieValue <code>String</code>
 	 */
-	public void addCookies(String cookieName, String cookieStatus) {
+	public static void addCookies(String cookieName, String cookieStatus) {
 		Cookie cookie = new Cookie(cookieName, cookieStatus);
 		BaseTest.driver.manage().addCookie(cookie);
 		logger.info(cookieName + " is added successfully in " + cookieStatus + " status");
@@ -242,8 +248,7 @@ public class WebElementActions extends BrowserActions {
 	 * @param elementName <code>String</code>
 	 * @return textOfElement <code>String</code>
 	 */
-
-	public String getTextFromElement(WebElement element , String elementName) {
+	public static String getTextFromElement(WebElement element , String elementName) {
 		String elementText = "";
 		try {
 			elementText = element.getText();
@@ -252,6 +257,19 @@ public class WebElementActions extends BrowserActions {
 			Assert.fail(elementName+" is not fount :: please check blow\n"+exception.getMessage());
 		}
 		return elementText;
+	}
+
+	/**
+	 * @description this method is used to wait till element ready to click
+	 * @param element <code>WebElement</WebElement>
+	 * @param elementName <code>String</code>
+	 */
+	public static void waitTillElementClickable(WebElement element , String elementName) {
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(element));
+		} catch (Exception exception) {
+			Assert.fail(elementName+" is not fount :: please check blow\n"+exception.getMessage());
+		}
 	}
 
 }

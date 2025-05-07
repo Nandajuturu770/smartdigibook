@@ -460,7 +460,7 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getHowToUseLnk(),"HowToUseLnk");
 		elementIsDisplayed(getHowToUseImg(),"HowToUseVideoImg");
 		elementIsDisplayed(getStudyPerkImg(),"StudentPerkImg");
-		logger.info("verification of login page is completed successfully.");
+		logger.info("verification of login page is completed successfully.\n");
 	}
 
 	/**
@@ -538,7 +538,7 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getLoginLnk(), "LoginLnk");
 		elementIsDisplayed(getRightNavneetPerkImg(), "RightNavneetPerkImg");
 		navigateBack();
-		logger.info("verification of create account is completed successfully.");
+		logger.info("verification of create account is completed successfully.\n");
 	}
 
 	/**
@@ -561,7 +561,7 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getConfirmPasswordTxfd(), "ConfirmPasswordTxfd");
 		elementIsDisplayed(getChangeLoginPinBtn(), "ChangeLoginPinBtn");
 		navigateBack();
-		logger.info("verification of forgot password is completed successfully.");
+		logger.info("verification of forgot password is completed successfully.\n");
 	}
 
 	/**
@@ -584,6 +584,6 @@ public class LoginPage extends WebElementActions {
 		elementIsDisplayed(getSendEmailTxt(), "SendEmailTxt");
 		elementIsDisplayed(getEmailLnk(), "EmailLnk");
 		navigateBack();
-		logger.info("verification of how to use is completed successfully.");
+		logger.info("verification of how to use is completed successfully.\n");
 	}
 }

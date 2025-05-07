@@ -112,6 +112,12 @@ public class HomePage extends WebElementActions {
 	private WebElement recentlyViewedBookNameTxt;
 
 	//* Recently Activities
+	@FindBy(id = "recentActivities")
+	private WebElement recentActivitiesTitleTxt;
+	
+	@FindBy(xpath = "//*[@id = 'recentActivities']/following-sibling::div")
+	private WebElement recentActivitiesViewAllLnk;
+	
 	@FindBy(xpath = "//*[@class='annotation-title']/preceding-sibling::*")
 	private WebElement activityImg;
 
@@ -327,6 +333,12 @@ public class HomePage extends WebElementActions {
 		return recentlyViewedBookNameTxt;
 	}
 
+	public WebElement getRecentActivitiesTitleTxt() {
+		return recentActivitiesTitleTxt;
+	}
+	public WebElement getRecentActivitiesViewAllLnk() {
+	 return recentActivitiesViewAllLnk;
+	}
 	public WebElement getActivityImg() {
 		return activityImg;
 	}
@@ -495,6 +507,7 @@ public class HomePage extends WebElementActions {
 	 */
 	public void verifyRecentViewedBooks() {
 		logger.info("verification of recent viewed books is started...");
+		scrollToElementByActions(getRecentlyViewedTitleTxt(),"RecentlyViewedTitleTxt");
 		elementIsDisplayed(getRecentlyViewedTitleTxt(), "RecentlyViewedTitleTxt");
 		elementIsDisplayed(getRecentlyViewedFeedbackImg(), "RecentlyViewedFeedbackImg");
 		elementIsDisplayed(getRecentlyViewedBookImg(), "RecentlyViewedBookImg");
@@ -509,6 +522,7 @@ public class HomePage extends WebElementActions {
 	 */
 	public void verifyRecentlyActivity() {
 		logger.info("verification of recently activity is started...");
+		scrollToElementByActions(getRecentActivitiesTitleTxt(),"RecentActivitiesTitleTxt");
 		elementIsDisplayed(getActivityImg(), "ActivityImg");
 		elementIsDisplayed(getActivityBookNameTxt(), "ActivityBookNameTxt");
 		String bookName = getTextFromElement(getActivityBookNameTxt(), "ActivityBookNameTxt");
@@ -528,6 +542,7 @@ public class HomePage extends WebElementActions {
 	 */
 	public void verifyTheSmartStore(String cartOrWish) {
 		logger.info("verification of the smart store is started...");
+		scrollToElementByActions(getTheSmartStoreTitleTxt(), "TheSmartStoreTitleTxt");
 		elementIsDisplayed(getTheSmartStoreTitleTxt(), "TheSmartStoreTitleTxt");
 		elementIsDisplayed(getTheSmartStoreViewAllLnk(), "TheSmartStoreViewAllLnk");
 		elementIsDisplayed(getTssBookCoverImg(), "TssBookCoverImg");
@@ -538,6 +553,7 @@ public class HomePage extends WebElementActions {
 		String bookPrice = getTextFromElement(getTssBookPriceTxt(), "TssBookPriceTxt");
 		logger.info("tss book price is :: " + bookPrice);
 		elementIsDisplayed(getTssBookHeartBtn(), "TssBookHeartBtn");
+		scrollToElementByActions(getAddToCartOrGoToCartBtn(), "AddToCartOrGoToCartBtn");
 		click(getTssBookHeartBtn(), "TssBookHeartBtn");
 		elementIsDisplayed(getTssBookPremiumImg(), "TssBookPremiumImg");
 		elementIsDisplayed(getAddToCartOrGoToCartBtn(), "AddToCartOrGoToCartBtn");
@@ -549,6 +565,7 @@ public class HomePage extends WebElementActions {
 	 */
 	public void verifyPromotionalBooks() {
 		logger.info("verification of promotional books is started...");
+		scrollToElementByActions(getPromotionalBookNameTxt(), "PromotionalBookNameTxt");
 		elementIsDisplayed(getThePromotionalTitleTxt(), "ThePromotionalTitleTxt");
 		elementIsDisplayed(getPromotionalBookCoverImg(), "PromotionalBookCoverImg");
 		elementIsDisplayed(getPromotionalBookNameTxt(), "PromotionalBookNameTxt");
@@ -564,8 +581,12 @@ public class HomePage extends WebElementActions {
 	 */
 	public void verifyHelpCenterFeature(boolean close) {
 		logger.info("verification of help center feature is started...");
+		waitTillElementIsDisplayedWithinTime(getHelpCentreBtn(), "HelpCentreBtn", 3);
 		elementIsDisplayed(getHelpCentreBtn(), "HelpCentreBtn");
-		click(getHelpCentreBtn(), "HelpCentreBtn");
+		waitTillElementClickable(getHelpCentreBtn(),"HelpCentreBtn");
+		clickByActions(getHelpCentreBtn(), "getHelpCentreBtn");
+		if(!checkIfElementIsDisplayed(getNeedHelpTxt(), "NeedHelpTxt"))
+			clickByActions(getHelpCentreBtn(), "getHelpCentreBtn");
 		elementIsDisplayed(getNeedHelpTxt(), "NeedHelpTxt");
 		elementIsDisplayed(getNeedHelpCloseBtn(), "NeedHelpCloseBtn");
 		elementIsDisplayed(getContactUsImg(), "ContactUsImg");
