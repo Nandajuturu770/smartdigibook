@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ public class WebElementActions extends BrowserActions {
 
 	final static Logger logger = LogManager.getLogger(WebElementActions.class);
 
-	private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 	public static Actions actions = new Actions(BaseTest.driver);
 
@@ -63,7 +64,7 @@ public class WebElementActions extends BrowserActions {
 			element.sendKeys(value);
 			logger.info(value + " is entered into the " + elementName);
 		} catch (Exception exception) {
-			Assert.fail("element is not found \n" + exception.getMessage());
+			Assert.fail(elementName+" is not found \n" + exception.getMessage());
 		}
 	}
 
@@ -76,7 +77,7 @@ public class WebElementActions extends BrowserActions {
 			element.click();
 			logger.info(elementName + " is clicked");
 		} catch (Exception exception) {
-			Assert.fail("element is not found \n" + exception.getMessage());
+			Assert.fail(elementName+" is not found \n" + exception.getMessage());
 		}
 	}
 
@@ -270,6 +271,32 @@ public class WebElementActions extends BrowserActions {
 		} catch (Exception exception) {
 			Assert.fail(elementName+" is not fount :: please check blow\n"+exception.getMessage());
 		}
+	}
+
+	/**
+	 * @description this method is used to wait will the page is loaded.
+	 */
+	public static void waitTillPageLoaded() {
+		wait.until(
+				webDriver -> ((JavascriptExecutor) webDriver).executeScript(
+						"return document.readyState"
+						).equals("complete")
+				);
+	}
+
+	/**
+	 * @description this method is used to click on element using the java script.
+	 * @param element <code>WebElement</code>
+	 * @param elementName <code>String</code>
+	 */
+	public static void clickByJavaScript(WebElement element, String elementName) {
+		try {
+			((JavascriptExecutor)driver).executeScript("arguments[0].click();", element);
+			logger.info(elementName + " is clicked by java script");
+		} catch (Exception expection) {
+			Assert.fail(elementName+" is not fount :: please check below\n"+expection.getMessage());
+		}
+
 	}
 
 }

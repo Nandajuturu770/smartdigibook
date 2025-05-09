@@ -7,8 +7,8 @@
         <methods>
           <include name="setupBrowser"/>
           <include name="initialization"/>
-          <include name="verifyHomePage"/>
           <include name="tearDownBwoser"/>
+          <include name="verifyProfileFeature"/>
         </methods>
       </class> <!-- web.HomePageTests -->
     </classes>

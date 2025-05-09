@@ -486,6 +486,7 @@ public class LoginPage extends WebElementActions {
 		}
 		click(getLoginBtn(),"loginBtn");
 		click(getLoginBtn(),"loginBtn");
+		waitTillPageLoaded();
 		waitTillElementIsDisplayedWithinTime(getMyLibraryTxt(),"MyLibraryTxt" , 20);		
 		addCookies("App_promotion_popup", "true");
 		logger.info("system logined into application with desired capabilities successfully.\n");

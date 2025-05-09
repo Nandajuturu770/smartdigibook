@@ -1,14 +1,18 @@
 package web.pages;
 
+import java.awt.Checkbox;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v130.profiler.model.Profile;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
+import web.enums.ProfileFields;
 import web.generic.WebElementActions;
 
 public class HomePage extends WebElementActions {
@@ -114,10 +118,10 @@ public class HomePage extends WebElementActions {
 	//* Recently Activities
 	@FindBy(id = "recentActivities")
 	private WebElement recentActivitiesTitleTxt;
-	
+
 	@FindBy(xpath = "//*[@id = 'recentActivities']/following-sibling::div")
 	private WebElement recentActivitiesViewAllLnk;
-	
+
 	@FindBy(xpath = "//*[@class='annotation-title']/preceding-sibling::*")
 	private WebElement activityImg;
 
@@ -207,6 +211,15 @@ public class HomePage extends WebElementActions {
 
 	@FindBy(xpath = "//*[@alt ='help_center_app_tour']/following-sibling::p")
 	private WebElement appTourTxt;
+
+	@FindBy(xpath = "//*[text()='Profile']")
+	private WebElement profileBtn;
+
+	@FindBy(xpath = "//*[text()='My Orders']")
+	private WebElement myOrdersBtn;
+
+	@FindBy(xpath = "//*[text()='Logout']")
+	private WebElement logoutBtn;
 
 	/* Getter Methods */
 	public static Logger getLogger() {
@@ -337,7 +350,7 @@ public class HomePage extends WebElementActions {
 		return recentActivitiesTitleTxt;
 	}
 	public WebElement getRecentActivitiesViewAllLnk() {
-	 return recentActivitiesViewAllLnk;
+		return recentActivitiesViewAllLnk;
 	}
 	public WebElement getActivityImg() {
 		return activityImg;
@@ -453,6 +466,22 @@ public class HomePage extends WebElementActions {
 
 	public WebElement getAppTourTxt() {
 		return appTourTxt;
+	}	
+
+	public WebElement getRecentlyviewedFeedbackImg() {
+		return recentlyviewedFeedbackImg;
+	}
+
+	public WebElement getProfileBtn() {
+		return profileBtn;
+	}
+
+	public WebElement getMyOrdersBtn() {
+		return myOrdersBtn;
+	}
+
+	public WebElement getLogoutBtn() {
+		return logoutBtn;
 	}
 
 	/**
@@ -601,5 +630,44 @@ public class HomePage extends WebElementActions {
 			click(getNeedHelpCloseBtn(), "NeedHelpCloseBtn");
 		}
 		logger.info("verification of help center feature is completed successfully.\n");
+	}
+
+	/**
+	 * @description this method is used to open the sub feature of the home page.
+	 */
+	public void openHomeFeaturesByName(String featureName) {
+		logger.info("system is trying to open \' "+featureName+" \' of the home..." );
+		if (ProfileFields.HOME.getProfileFieldName().equals(featureName))
+			click(getHeaderSmartDigiBookLogo(), "HeaderSmartDigiBookLogo");
+		else if (ProfileFields.REDEEM_ACCESS_CODE.getProfileFieldName().equals(featureName))
+			click(getHeaderRedeemAccessBtn(), "HeaderRedeemAccessBtn");
+		else if (ProfileFields.CONTACT_US.getProfileFieldName().equals(featureName))
+			click(getContactUsBtn(), "ContactUsBtn");
+		else if (ProfileFields.NOTIFICATION_SETTINGS.getProfileFieldName().equals(featureName))
+			click(getHeaderNotificationBtn(), "HeaderNotificationBtn");
+		else if (ProfileFields.MY_WISHLIST.getProfileFieldName().equals(featureName))
+			click(getHeaderWishlistBtn(), "HeaderWishlistBtn");
+		else if (ProfileFields.MY_CART.getProfileFieldName().equals(featureName))
+			click(getHeaderCartBtn(), "HeaderCartBtn");
+		else if (ProfileFields.MY_WALLET.getProfileFieldName().equals(featureName))
+			click(getHeaderUserWalletBtn(), "HeaderUserWalletBtn");
+		else 
+			logger.info(featureName+" is not in home page and stared to search in profile");
+		waitTillElementClickable(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");
+		clickByJavaScript(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");
+		waitTillElementIsDisplayedWithinTime(getProfileBtn(), "ProfileButton", 3);
+		if (ProfileFields.PROFILE.getProfileFieldName().equals(featureName)) 
+			clickByJavaScript(getProfileBtn(), "ProfileBtn");
+		else if (ProfileFields.MY_ORDERS.getProfileFieldName().equals(featureName)) 
+			clickByJavaScript(getMyOrdersBtn(), "MyOrders");
+		else if (ProfileFields.LOGOUT.getProfileFieldName().equals(featureName)) 
+			clickByJavaScript(TheSmartStoreTitleTxt, featureName);
+		else {
+			clickByJavaScript(getHeaderProfileBtn(), "HeaderProfileBtn");
+			Assert.fail("the given feature :: "+ featureName + "is matched with home features.");
+		}
+		if(!checkIfElementIsDisplayed(getProfileBtn(), "ProfileBtn"))
+			waitTillElementClickable(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");	
+		logger.info("system opened \' "+featureName+" \' of the home succussfully." );
 	}
 }
