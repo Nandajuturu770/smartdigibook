@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -130,5 +131,13 @@ public class BrowserActions  {
 			Assert.fail("failed to fetch all window handles :: please check below details \n"+exception.getMessage());
 		}
 		return null;	
+	}
+	
+	/**
+	 * @description this method is used to scroll the page to the buttom.
+	 */
+	public static void scrollButtonOfPage() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	}
 }

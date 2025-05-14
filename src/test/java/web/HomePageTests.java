@@ -52,8 +52,9 @@ public class HomePageTests extends BaseTest {
 		profilePage.verifyRightSideOfProfilePage();
 		Map<String, String> details = profilePage.getProfileDetails();
 		profilePage.verifyProfileInfoFields();
-		profilePage.updateProfile();
+		Map<String, String> updated = profilePage.updateProfile();
 		logger.info(details.entrySet());
+		logger.info(updated.entrySet());
 		logger.info("verification of profile feature is completed successfully.");
 	}
 }

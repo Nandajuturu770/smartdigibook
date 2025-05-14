@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -87,7 +88,8 @@ public class WebElementActions extends BrowserActions {
 	 */
 	public static void clear(WebElement element, String elementName) {
 		try {
-			element.clear();
+			element.sendKeys(Keys.CONTROL + "a");
+			element.sendKeys(Keys.BACK_SPACE);
 			logger.info(elementName + " is cleared");
 		} catch (Exception exception) {
 			Assert.fail("element is not found \n" + exception.getMessage());
@@ -297,6 +299,24 @@ public class WebElementActions extends BrowserActions {
 			Assert.fail(elementName+" is not fount :: please check below\n"+expection.getMessage());
 		}
 
+	}
+
+	/**
+	 * @description this method is used to get attribute value of element
+	 * @param element <code>WebElement</code>
+	 * @param elementName <code>String</code>
+	 * @param attribute <code>String</code>
+	 * @return attributeValue <code>String</code>
+	 */
+	public static String getAttributeValueOfElement(WebElement element , String elementName , String attribute) {
+		String attributeValue = "";
+		try {
+			attributeValue = element.getDomProperty(attribute);
+			logger.info(attribute+" of "+elementName +" is :: "+attributeValue);
+		} catch (Exception exception) {
+			Assert.fail(elementName+" is not fount :: please check below\n"+exception.getMessage());
+		}
+		return attribute;
 	}
 
 }

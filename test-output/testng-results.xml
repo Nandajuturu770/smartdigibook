@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-05-10T01:03:39 IST" name="Default suite" finished-at="2025-05-10T01:03:58 IST" duration-ms="18874">
+  <suite started-at="2025-05-13T18:05:37 IST" name="Default suite" finished-at="2025-05-13T18:05:56 IST" duration-ms="18706">
     <groups>
     </groups>
-    <test started-at="2025-05-10T01:03:39 IST" name="Default test" finished-at="2025-05-10T01:03:58 IST" duration-ms="18874">
+    <test started-at="2025-05-13T18:05:37 IST" name="Default test" finished-at="2025-05-13T18:05:56 IST" duration-ms="18706">
       <class name="web.HomePageTests">
-        <test-method is-config="true" signature="setupBrowser()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-10T01:03:39 IST" name="setupBrowser" finished-at="2025-05-10T01:03:49 IST" duration-ms="10062" status="PASS">
+        <test-method is-config="true" signature="setupBrowser()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-13T18:05:37 IST" name="setupBrowser" finished-at="2025-05-13T18:05:47 IST" duration-ms="9658" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupBrowser -->
-        <test-method is-config="true" signature="initialization()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-10T01:03:49 IST" name="initialization" finished-at="2025-05-10T01:03:54 IST" duration-ms="5238" status="PASS">
+        <test-method is-config="true" signature="initialization()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-13T18:05:47 IST" name="initialization" finished-at="2025-05-13T18:05:52 IST" duration-ms="4958" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialization -->
-        <test-method signature="verifyProfileFeature()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-10T01:03:54 IST" name="verifyProfileFeature" finished-at="2025-05-10T01:03:58 IST" duration-ms="3526" status="PASS">
+        <test-method signature="verifyProfileFeature()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-13T18:05:52 IST" name="verifyProfileFeature" finished-at="2025-05-13T18:05:56 IST" duration-ms="4024" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyProfileFeature -->
-        <test-method is-config="true" signature="tearDownBwoser()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-10T01:03:58 IST" name="tearDownBwoser" finished-at="2025-05-10T01:03:58 IST" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="tearDownBwoser()[pri:0, instance:web.HomePageTests@29ef6856]" started-at="2025-05-13T18:05:56 IST" name="tearDownBwoser" finished-at="2025-05-13T18:05:56 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownBwoser -->

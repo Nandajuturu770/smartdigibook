@@ -1,5 +1,6 @@
 package web.pages;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -486,6 +487,7 @@ public class LoginPage extends WebElementActions {
 		}
 		click(getLoginBtn(),"loginBtn");
 		click(getLoginBtn(),"loginBtn");
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		waitTillPageLoaded();
 		waitTillElementIsDisplayedWithinTime(getMyLibraryTxt(),"MyLibraryTxt" , 20);		
 		addCookies("App_promotion_popup", "true");

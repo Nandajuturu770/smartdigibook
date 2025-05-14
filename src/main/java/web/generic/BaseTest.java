@@ -25,7 +25,8 @@ public class BaseTest {
 		options.addArguments("--disable-infobars");
 		options.addArguments("--disable-notifications");
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		driver.manage().window().maximize();
 		logger.info("brower is maximized");
 		driver.get(URL);
@@ -34,6 +35,7 @@ public class BaseTest {
 
 	@AfterClass
 	public void tearDownBwoser(){
-		driver.close();
+//		if(driver != null)
+//			driver.close();
 	}
 }
