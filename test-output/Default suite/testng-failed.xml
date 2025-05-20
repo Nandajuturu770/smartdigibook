@@ -8,7 +8,7 @@
           <include name="setupBrowser"/>
           <include name="initialization"/>
           <include name="tearDownBwoser"/>
-          <include name="verifyProfileFeature"/>
+          <include name="verifyCart"/>
         </methods>
       </class> <!-- web.HomePageTests -->
     </classes>

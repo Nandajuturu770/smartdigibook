@@ -19,4 +19,14 @@ public class StringUtils {
         }
         return builder.toString();
     }
+    
+    /**
+     * @description this method is used to get integer from the string
+     * @param input <code>String</code>
+     * @return number <code>int<code>
+     */
+    public static int getNumberFromString(String input) {
+        String numbers = input.replaceAll("[^0-9.]", ""); 
+        return numbers.isEmpty() ? 0 : Integer.parseInt(numbers);
+    }
 }

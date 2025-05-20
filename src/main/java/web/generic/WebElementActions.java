@@ -221,7 +221,7 @@ public class WebElementActions extends BrowserActions {
 				logger.info(elementName + " is displayed within given " + sec + " time period at " + i + " sec");
 				return status;
 			} catch (Exception e) {
-				if (i == sec - 1) {
+				if (i == sec) {
 					logger.error(elementName + " is \"not\" displayed within given " + sec + "time period :: please check below :\n" + e.getMessage());
 				}
 			}
@@ -317,6 +317,20 @@ public class WebElementActions extends BrowserActions {
 			Assert.fail(elementName+" is not fount :: please check below\n"+exception.getMessage());
 		}
 		return attribute;
+	}
+	
+	/**
+	 * @discription this method is used to verify element is visible or not
+	 * @param element <code>WebElement</code>
+	 * @param elementName <code>String</code>
+	 */
+	public static void checkElementIsVisible(WebElement element, String elementName) {
+		try {
+		wait.until(ExpectedConditions.visibilityOf(element));
+		logger.info(elementName+" is visibled");
+		}catch (Exception exception) {
+			Assert.fail(elementName+" is not fount :: please check below\n"+exception.getMessage());
+		}
 	}
 
 }

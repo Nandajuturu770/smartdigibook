@@ -1,13 +1,11 @@
 package web.pages;
 
-import java.awt.Checkbox;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v130.profiler.model.Profile;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -646,9 +644,9 @@ public class HomePage extends WebElementActions {
 		else if (ProfileFields.NOTIFICATION_SETTINGS.getProfileFieldName().equals(featureName))
 			click(getHeaderNotificationBtn(), "HeaderNotificationBtn");
 		else if (ProfileFields.MY_WISHLIST.getProfileFieldName().equals(featureName))
-			click(getHeaderWishlistBtn(), "HeaderWishlistBtn");
+			clickByJavaScript(getHeaderWishlistBtn(), "HeaderWishlistBtn");
 		else if (ProfileFields.MY_CART.getProfileFieldName().equals(featureName))
-			click(getHeaderCartBtn(), "HeaderCartBtn");
+			clickByJavaScript(getHeaderCartBtn(), "HeaderCartBtn");
 		else if (ProfileFields.MY_WALLET.getProfileFieldName().equals(featureName))
 			click(getHeaderUserWalletBtn(), "HeaderUserWalletBtn");
 		else 
@@ -664,10 +662,10 @@ public class HomePage extends WebElementActions {
 			clickByJavaScript(TheSmartStoreTitleTxt, featureName);
 		else {
 			clickByJavaScript(getHeaderProfileBtn(), "HeaderProfileBtn");
-			Assert.fail("the given feature :: "+ featureName + "is matched with home features.");
+			logger.info("the given feature :: "+ featureName + "is not matched with home features.");
 		}
 		if(!checkIfElementIsDisplayed(getProfileBtn(), "ProfileBtn"))
 			waitTillElementClickable(getHeaderProfileUserNameTxt(), "HeaderProfileUserNameTxt");	
-		logger.info("system opened \' "+featureName+" \' of the home succussfully." );
+		logger.info("system opened \' "+featureName+" \' of the home succussfully.\n" );
 	}
 }

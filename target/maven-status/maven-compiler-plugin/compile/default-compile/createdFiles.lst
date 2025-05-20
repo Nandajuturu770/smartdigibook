@@ -1,3 +1,11 @@
+web\enums\BookDetails.class
+web\pages\CartPage.class
+web\pages\HomePage.class
+web\pages\WishlistPage.class
+web\enums\ProfileFields.class
+web\generic\BrowserActions.class
+web\utils\StringUtils.class
 web\generic\BaseTest.class
 web\generic\WebElementActions.class
 web\pages\LoginPage.class
+web\pages\ProfilePage.class
