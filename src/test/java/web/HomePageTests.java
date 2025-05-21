@@ -37,7 +37,7 @@ public class HomePageTests extends BaseTest {
 		loginPage.loginIntoApplication(mobileNumber, password);
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void verifyHomePage() {
 		logger.info("verification of all features of home page is started...");
 		homePage.verifyHeaderOfHome();
@@ -50,7 +50,7 @@ public class HomePageTests extends BaseTest {
 		logger.info("verification of all features of home page is completed successfully.");
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void verifyProfileFeature() {
 		logger.info("verification of profile feature is started...");
 		homePage.openHomeFeaturesByName(ProfileFields.PROFILE.getProfileFieldName());
@@ -64,7 +64,7 @@ public class HomePageTests extends BaseTest {
 	}
 
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void verifyWishlist() throws InterruptedException {
 		logger.info("verification of wish list is started...");
 		homePage.openHomeFeaturesByName(ProfileFields.MY_WISHLIST.getProfileFieldName());
@@ -79,15 +79,11 @@ public class HomePageTests extends BaseTest {
 	public void verifyCart(){
 		logger.info("verification of cart is started...");
 		homePage.openHomeFeaturesByName(ProfileFields.MY_CART.getProfileFieldName());
-		logger.info(cartPage.getEmptyImg().isDisplayed());
-		logger.info(cartPage.getBookCoverImg().isDisplayed());
-//		cartPage.verifyHeader();
-//		cartPage.verifyBookAndGetBookDetails("");
-//		cartPage.verifySummary();
-//		cartPage.removeAllBooksAndVerifyEmptyCart();
-//		cartPage.removeAllBooksAndVerifyEmptyCart();
+		cartPage.verifyHeader();
+		cartPage.verifyBookAndGetBookDetails("");
+		cartPage.verifySummary();
+		cartPage.removeAllBooksAndVerifyEmptyCart();
 		logger.info("verification of cart is completed successfully.");
-
 	}
 	
 	
